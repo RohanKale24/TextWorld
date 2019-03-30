@@ -1,16 +1,25 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Graph {
-    private ArrayList<Node> nodes;
+
+    private HashMap<String, Node> nodes;
+
 
     public Graph() {
-        nodes = new ArrayList<>();
+        nodes = new HashMap<String, Node>();
     }
 
-    public void addNode(String name) {
-        Node n = new Node(name);
-        nodes.add(n);
+    public void addNode(String name, String description) {
+        Node n = new Node(name, description);
+        nodes.put(name, n);
     }
+
+    public void addNode(String name){
+        Node n = new Node(name);
+        nodes.put(name,n);
+    }
+
 
     public void addDirectedEdge(String name1, String name2) {
         Node node1 = getNode(name1);
@@ -22,12 +31,8 @@ public class Graph {
     }
 
     public Node getNode(String name) {
-        for (int i = 0; i < nodes.size(); i++) {
-            Node currrentNode = nodes.get(i);
-            if (currrentNode.getName().equals(name)) return currrentNode;
-        }
+        return nodes.get(name);
 
-        return null;
     }
 
     public void addUndirectedEdge(String name1, String name2) {
@@ -42,39 +47,50 @@ public class Graph {
 
     public class Node {
         private String name;
-        private ArrayList<Node> neighbors;
+        private HashMap<String, Node> neighbors;
+        private String description;
 
         public Node(String name) {
             this.name = name;
-            neighbors = new ArrayList<>();
+            neighbors = new HashMap<>();
+            description = "This room has no description";
+        }
+
+        public Node(String name, String description) {
+            this.name = name;
+            neighbors = new HashMap<>();
+            this.description = description;
         }
 
         public String getName() {
             return name;
         }
 
+        public String getDescription() {
+            return description;
+        }
+
         public void addNeighbor(Node n) {
-            neighbors.add(n);
+
+            String nodeName = n.getName();
+            neighbors.put(nodeName, n);
+
         }
 
         public String getNeighborNames() {
             String names = "";
-            for (int i = 0; i < neighbors.size(); i++) {
-                names += neighbors.get(i).getName() + ",";
+            for (String n : neighbors.keySet()) {
+                names += neighbors.get(n) + " ";
             }
             return names;
+
         }
 
         public Node getNeighbor(String name) {
-            for (int i = 0; i < neighbors.size(); i++) {
-                Node n = neighbors.get(i);
-                if (n.getName().equals(name)) {
-                    return n;
-                }
-            }
-            return null;
+            return neighbors.get(name);
+
         }
+
+
     }
-
-
 }
