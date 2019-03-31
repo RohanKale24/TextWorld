@@ -91,6 +91,8 @@ public class Graph {
 
         }
 
-
+        public HashMap<String, Node> getNeighbors() {
+            return neighbors;
+        }
     }
 }
