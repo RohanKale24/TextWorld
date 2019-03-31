@@ -1,10 +1,10 @@
 import java.util.HashMap;
 
 public class Player {
-    String name;
-    String description;
-    HashMap<String, Item> items;
-    Graph.Node currentNode;
+    private String name;
+    private String description;
+    private HashMap<String, Item> items;
+    private Graph.Node currentNode;
 
     public Player() {
         name = "No Name";
@@ -35,19 +35,27 @@ public class Player {
         return i;
     }
 
-    public void destroyItem(String name) {
-        items.remove(name);
+    public boolean destroyItem(String name) {
+        if(items.containsKey(name)){
+            items.remove(name);
+            return true;
+        }
+        return false;
+
     }
 
     public HashMap getItems() {
         return items;
     }
 
-    public void displayItems() {
+    public String displayItems() {
         System.out.print("you have these items: ");
+        String itemNames = "you have these items: ";
         for (String name : items.keySet()) {
             System.out.print(name + ",");
+            itemNames+=name+",";
         }
+        return itemNames;
     }
 
     public void setName(String name) {

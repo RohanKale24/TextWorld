@@ -49,17 +49,20 @@ public class Graph {
         private String name;
         private HashMap<String, Node> neighbors;
         private String description;
+        private HashMap<String, Item> items;
 
         public Node(String name) {
             this.name = name;
             neighbors = new HashMap<>();
             description = "This room has no description";
+            items = new HashMap<>();
         }
 
         public Node(String name, String description) {
             this.name = name;
             neighbors = new HashMap<>();
             this.description = description;
+            items = new HashMap<>();
         }
 
         public String getName() {
@@ -93,6 +96,36 @@ public class Graph {
 
         public HashMap<String, Node> getNeighbors() {
             return neighbors;
+        }
+
+        public HashMap<String, Item> getItems() {
+            return items;
+        }
+        public String displayItems(){
+            System.out.print("These items are in the room: ");
+            String itemNames = "These items are in the room: ";
+            for (String name : items.keySet()) {
+                System.out.print(name + ",");
+                itemNames +=name + ",";
+            }
+            return itemNames;
+        }
+        public void addItem(String name){
+            Item item = new Item(name);
+            items.put(name,item);
+        }
+        public void addItem(String name, String description){
+            Item item = new Item(name,description);
+            items.put(name,item);
+        }
+        public void addItem(Item item){
+            items.put(item.getName(),item);
+        }
+        public Item removeItem(String name){
+            return items.remove(name);
+        }
+        public void destroyItem(String name){
+            items.remove(name);
         }
     }
 }
