@@ -36,7 +36,7 @@ public class Player {
     }
 
     public boolean destroyItem(String name) {
-        if(items.containsKey(name)){
+        if (items.containsKey(name)) {
             items.remove(name);
             return true;
         }
@@ -49,11 +49,11 @@ public class Player {
     }
 
     public String displayItems() {
-        System.out.print("you have these items: ");
+
         String itemNames = "you have these items: ";
         for (String name : items.keySet()) {
-            System.out.print(name + ",");
-            itemNames+=name+",";
+
+            itemNames += name + ",";
         }
         return itemNames;
     }
@@ -70,10 +70,18 @@ public class Player {
         this.description = description;
     }
 
-    public boolean moveToRoom(String name){
-        HashMap<String,Graph.Node> currentNodeNeighbors = currentNode.getNeighbors();
-        if(currentNodeNeighbors.containsKey(name)){
+    public boolean moveToRoom(String name) {
+        HashMap<String, Graph.Node> currentNodeNeighbors = currentNode.getNeighbors();
+        if (currentNodeNeighbors.containsKey(name)) {
             currentNode = currentNodeNeighbors.get(name);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean moveToRoom(Graph.Node node) {
+        if (node != null) {
+            currentNode = node;
             return true;
         }
         return false;
@@ -89,5 +97,12 @@ public class Player {
 
     public Graph.Node getCurrentNode() {
         return currentNode;
+    }
+
+    public boolean hasItem(String name) {
+        if (items.containsKey(name)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -15,9 +15,9 @@ public class Graph {
         nodes.put(name, n);
     }
 
-    public void addNode(String name){
+    public void addNode(String name) {
         Node n = new Node(name);
-        nodes.put(name,n);
+        nodes.put(name, n);
     }
 
 
@@ -101,30 +101,43 @@ public class Graph {
         public HashMap<String, Item> getItems() {
             return items;
         }
-        public String displayItems(){
-            System.out.print("These items are in the room: ");
+
+        public String displayItems() {
+
             String itemNames = "These items are in the room: ";
             for (String name : items.keySet()) {
-                System.out.print(name + ",");
-                itemNames +=name + ",";
+
+                itemNames += name + ",";
             }
             return itemNames;
         }
-        public void addItem(String name){
+
+        public boolean hasItem(String name) {
+            if (items.containsKey(name)) {
+                return true;
+            }
+            return false;
+        }
+
+        public void addItem(String name) {
             Item item = new Item(name);
-            items.put(name,item);
+            items.put(name, item);
         }
-        public void addItem(String name, String description){
-            Item item = new Item(name,description);
-            items.put(name,item);
+
+        public void addItem(String name, String description) {
+            Item item = new Item(name, description);
+            items.put(name, item);
         }
-        public void addItem(Item item){
-            items.put(item.getName(),item);
+
+        public void addItem(Item item) {
+            items.put(item.getName(), item);
         }
-        public Item removeItem(String name){
+
+        public Item removeItem(String name) {
             return items.remove(name);
         }
-        public void destroyItem(String name){
+
+        public void destroyItem(String name) {
             items.remove(name);
         }
     }

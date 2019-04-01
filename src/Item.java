@@ -2,11 +2,12 @@ public class Item {
     private String name;
     private String description;
 
-    public Item(String name,String description){
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
     }
-    public Item(String name){
+
+    public Item(String name) {
         this.name = name;
         description = "This item has no description";
     }
