@@ -31,6 +31,7 @@ public class Main {
 
 
         currentRoom.addItem("yeet","the most powerful yeet to yeet the yeet");
+        Chicken c = new Chicken("Lord Farquad",currentRoom);
 
 
 

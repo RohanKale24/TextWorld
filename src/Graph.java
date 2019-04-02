@@ -52,12 +52,14 @@ public class Graph {
         private HashMap<String, Node> neighbors;
         private String description;
         private ArrayList<Item> items;
+        private ArrayList<Chicken> chickens;
 
         public Node(String name) {
             this.name = name;
             neighbors = new HashMap<>();
             description = "This room has no description";
             items = new ArrayList<>();
+            chickens = new ArrayList<>();
         }
 
         public Node(String name, String description) {
@@ -65,6 +67,7 @@ public class Graph {
             neighbors = new HashMap<>();
             this.description = description;
             items = new ArrayList<>();
+            chickens = new ArrayList<>();
         }
 
         public String getName() {
