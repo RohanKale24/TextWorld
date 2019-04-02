@@ -83,7 +83,7 @@ public class Graph {
         public String getNeighborNames() {
             String names = "";
             for (String n : neighbors.keySet()) {
-                names += neighbors.get(n) + " ";
+                names += neighbors.get(n).getName() + " ";
             }
             return names;
 

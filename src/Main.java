@@ -16,12 +16,13 @@ public class Main {
         String response = "";
         Scanner in = new Scanner(System.in);
 
-        Player p = new Player();
+        Player p = new Player(currentRoom);
         System.out.println("Type your name");
         String playerName = in.nextLine();
         p.setName(playerName);
         System.out.println("Type a description if you want, if you don't just hit enter");
         String playerDesciption = in.nextLine();
+
         if (playerDesciption.length() > 0) {
             p.setDescription(playerDesciption);
         }

@@ -13,6 +13,10 @@ public class Player {
 
     }
 
+    public Player(Graph.Node currentNode){
+        this.currentNode =currentNode;
+    }
+
     public Player(String name) {
         this.name = name;
         description = "This player had no description";
