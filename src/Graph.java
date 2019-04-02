@@ -6,6 +6,7 @@ public class Graph {
     private HashMap<String, Node> nodes;
 
 
+
     public Graph() {
         nodes = new HashMap<String, Node>();
     }
@@ -13,6 +14,7 @@ public class Graph {
     public void addNode(String name, String description) {
         Node n = new Node(name, description);
         nodes.put(name, n);
+
     }
 
     public void addNode(String name) {

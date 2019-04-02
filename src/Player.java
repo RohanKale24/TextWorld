@@ -1,63 +1,79 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Player {
     private String name;
     private String description;
-    private HashMap<String, Item> items;
+    private ArrayList<Item> items;
     private Graph.Node currentNode;
 
     public Player() {
         name = "No Name";
         description = "This player had no description";
-        items = new HashMap<>();
+        items = new ArrayList<>();
 
     }
 
-    public Player(Graph.Node currentNode){
-        this.currentNode =currentNode;
+    public Player(Graph.Node currentNode) {
+        this.currentNode = currentNode;
+        name = "No Name";
+        description = "This player had no description";
+        items = new ArrayList<>();
     }
 
     public Player(String name) {
         this.name = name;
         description = "This player had no description";
-        items = new HashMap<>();
+        items = new ArrayList<>();
     }
 
     public Player(String name, String description) {
         this.name = name;
         this.description = description;
-        items = new HashMap<>();
+        items = new ArrayList<>();
+        ;
     }
 
     public void addItem(Item item) {
-        String itemName = item.getName();
-        items.put(itemName, item);
+
+        items.add(item);
     }
 
     public Item removeItem(String name) {
-        Item i = items.remove(name);
-        return i;
+        for (int i = 0; i < items.size(); i++) {
+            Item item = items.get(i);
+            String itemName = item.getName();
+            if (itemName.equals(name)) {
+                return items.remove(i);
+            }
+        }
+        return null;
+
     }
 
     public boolean destroyItem(String name) {
-        if (items.containsKey(name)) {
-            items.remove(name);
-            return true;
+        for (int i = 0; i < items.size(); i++) {
+            Item item = items.get(i);
+            String itemName = item.getName();
+            if (itemName.equals(name)) {
+                items.remove(i);
+                return true;
+            }
         }
         return false;
 
     }
 
-    public HashMap getItems() {
+    public ArrayList<Item> getItems() {
         return items;
     }
 
     public String displayItems() {
 
         String itemNames = "you have these items: ";
-        for (String name : items.keySet()) {
-
-            itemNames += name + ",";
+        for (Item item : items) {
+            String itemName = item.getName();
+            itemNames += itemName + ",";
         }
         return itemNames;
     }
@@ -104,9 +120,14 @@ public class Player {
     }
 
     public boolean hasItem(String name) {
-        if (items.containsKey(name)) {
-            return true;
+        for (int i = 0; i < items.size(); i++) {
+            Item item = items.get(i);
+            String itemName = item.getName();
+            if (itemName.equals(name)) {
+                return true;
+            }
         }
         return false;
+
     }
 }

@@ -22,13 +22,17 @@ public class Main {
         p.setName(playerName);
         System.out.println("Type a description if you want, if you don't just hit enter");
         String playerDesciption = in.nextLine();
-
         if (playerDesciption.length() > 0) {
             p.setDescription(playerDesciption);
         }
 
 
-        System.out.println("Your commands are: go, look, add room, help, or quit");
+        System.out.println("Your commands are: go, look, add room,take, drop, help, or quit");
+
+
+        currentRoom.addItem("yeet","the most powerful yeet to yeet the yeet");
+
+
 
         do {
             System.out.println("You are currently in the " + currentRoom.getName());
@@ -64,7 +68,7 @@ public class Main {
             } else if (words[0].equals("quit") || words.equals("Quit")) {
                 break;
             } else if (words[0].equals("help") || words.equals("Help")) {
-                System.out.println("Your commands are: go, look, add room, help, or quit");
+                System.out.println("Your commands are: go, look, add room,take, drop, help, or quit");
                 System.out.println("to use the go command simply type go and a valid room name and it will take you to that rooom");
                 System.out.println("to use the look command simply type look and the rooms you can move to from your current room will be displayed");
                 System.out.println("to use add room simply type add and prompts will follow for you to give your new room a name and description");
@@ -93,7 +97,7 @@ public class Main {
 
 
             } else {
-                System.out.println("Invalid command! Please try again with any of these commands: go,look,or add room"/* display all commands*/);
+                System.out.println("Invalid command! Please try again with any of these commands: go, look, add room,take, drop, help, or quit"/* display all commands*/);
             }
 
 
