@@ -51,20 +51,20 @@ public class Graph {
         private String name;
         private HashMap<String, Node> neighbors;
         private String description;
-        private HashMap<String, Item> items;
+        private ArrayList<Item> items;
 
         public Node(String name) {
             this.name = name;
             neighbors = new HashMap<>();
             description = "This room has no description";
-            items = new HashMap<>();
+            items = new ArrayList<>();
         }
 
         public Node(String name, String description) {
             this.name = name;
             neighbors = new HashMap<>();
             this.description = description;
-            items = new HashMap<>();
+            items = new ArrayList<>();
         }
 
         public String getName() {
@@ -100,43 +100,56 @@ public class Graph {
             return neighbors;
         }
 
-        public HashMap<String, Item> getItems() {
+        public ArrayList <Item> getItems() {
             return items;
         }
 
         public String displayItems() {
 
             String itemNames = "These items are in the room: ";
-            for (String name : items.keySet()) {
-
-                itemNames += name + ",";
+            for (Item item : items) {
+                String itemName = item.getName();
+                itemNames += itemName + ",";
             }
             return itemNames;
         }
 
         public boolean hasItem(String name) {
-            if (items.containsKey(name)) {
-                return true;
+            for (int i = 0; i < items.size(); i++) {
+                Item item = items.get(i);
+                String itemName = item.getName();
+                if (itemName.equals(name)) {
+                    return true;
+                }
             }
             return false;
+
         }
 
         public void addItem(String name) {
             Item item = new Item(name);
-            items.put(name, item);
+            items.add(item);
         }
 
         public void addItem(String name, String description) {
             Item item = new Item(name, description);
-            items.put(name, item);
+            items.add( item);
         }
 
         public void addItem(Item item) {
-            items.put(item.getName(), item);
+            items.add(item);
         }
 
         public Item removeItem(String name) {
-            return items.remove(name);
+            for (int i = 0; i < items.size(); i++) {
+                Item item = items.get(i);
+                String itemName = item.getName();
+                if (itemName.equals(name)) {
+                    return items.remove(i);
+                }
+            }
+            return null;
+
         }
 
         public void destroyItem(String name) {
