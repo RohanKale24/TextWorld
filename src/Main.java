@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +12,7 @@ public class Main {
         g.addDirectedEdge("hall", "dungeon");
         g.addUndirectedEdge("hall", "closet");
 
+        ArrayList<Creature> allCreatures = new ArrayList<>();
 
         Graph.Node currentRoom = g.getNode("hall");
         String response = "";
@@ -35,6 +37,8 @@ public class Main {
         currentRoom.addCreature(c);
         Chicken d = new Chicken("foujabo", currentRoom);
         currentRoom.addCreature(d);
+        allCreatures.add(c);
+        allCreatures.add(d);
 
 
         do {
@@ -48,8 +52,8 @@ public class Main {
                 if (nodeName != null && !nodeName.equals(currentRoom.getName())&& currentRoom.getNeighborNames().contains(nodeName)) {
                     currentRoom = g.getNode(nodeName);
                     p.moveToRoom(nodeName);
-                    c.move();
-                    d.move();
+
+                    moveAllCreatures(allCreatures);
                 } else {
                     System.out.println("Please type a valid room name");
                     System.out.println("The neighboring rooms are: " + currentRoom.getNeighborNames());
@@ -108,6 +112,12 @@ public class Main {
 
         } while (true);
 
+    }
+
+    private static void moveAllCreatures(ArrayList<Creature> allCreatures) {
+        for(Creature c : allCreatures){
+            c.move();
+        }
     }
 
     private static String getValidNodeName(String[] words, Graph g) {
