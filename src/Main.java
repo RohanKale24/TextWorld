@@ -35,7 +35,7 @@ public class Main {
         currentRoom.addItem("yeet", "the most powerful yeet to yeet the yeet");
         Chicken c = new Chicken("Lord Farquad", currentRoom);
         currentRoom.addCreature(c);
-        Chicken d = new Chicken("foujabo", currentRoom);
+        Chicken d = new Chicken("Chicken Little", currentRoom);
         currentRoom.addCreature(d);
         allCreatures.add(c);
         allCreatures.add(d);
@@ -52,7 +52,6 @@ public class Main {
                 if (nodeName != null && !nodeName.equals(currentRoom.getName())&& currentRoom.getNeighborNames().contains(nodeName)) {
                     currentRoom = g.getNode(nodeName);
                     p.moveToRoom(nodeName);
-
                     moveAllCreatures(allCreatures);
                 } else {
                     System.out.println("Please type a valid room name");
