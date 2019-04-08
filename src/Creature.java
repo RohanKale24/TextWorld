@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Creature {
     protected Graph.Node currentRoom;
@@ -8,11 +9,14 @@ public abstract class Creature {
     public abstract void move();
 
     public void moveToRandomRoom(){
-        String names = currentRoom.getNeighborNames();
-        String[] namesArray = names.split(" ");
-        int randomIndex = (int)(Math.random()*namesArray.length);
-        String newRoomName = namesArray[randomIndex];
-        currentRoom = currentRoom.getNeighbors().get(newRoomName);
+        ArrayList<Graph.Node> rooms = new ArrayList<>(currentRoom.getNeighbors().values());
+        int randomIndex = (int)(Math.random()*rooms.size());
+        System.out.println("index is:"+randomIndex);
+        Graph.Node newRoom = rooms.get(randomIndex);
+        currentRoom.removeCreature(this);
+        currentRoom = newRoom;
+        currentRoom.addCreature(this);
+
     }
 
     public String getName() {
@@ -38,4 +42,6 @@ public abstract class Creature {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

@@ -30,9 +30,11 @@ public class Main {
         System.out.println("Your commands are: go, look, add room,take, drop, help, or quit");
 
 
-        currentRoom.addItem("yeet","the most powerful yeet to yeet the yeet");
-        Chicken c = new Chicken("Lord Farquad",currentRoom);
-
+        currentRoom.addItem("yeet", "the most powerful yeet to yeet the yeet");
+        Chicken c = new Chicken("Lord Farquad", currentRoom);
+        currentRoom.addCreature(c);
+        Chicken d = new Chicken("foujabo", currentRoom);
+        currentRoom.addCreature(d);
 
 
         do {
@@ -43,10 +45,11 @@ public class Main {
             String[] words = response.split(" ");
             if (words[0].equals("go") || words[0].equals("Go")) {
                 String nodeName = getValidNodeName(words, g);
-                if (nodeName != null) {
+                if (nodeName != null && !nodeName.equals(currentRoom.getName())&& currentRoom.getNeighborNames().contains(nodeName)) {
                     currentRoom = g.getNode(nodeName);
                     p.moveToRoom(nodeName);
-
+                    c.move();
+                    d.move();
                 } else {
                     System.out.println("Please type a valid room name");
                     System.out.println("The neighboring rooms are: " + currentRoom.getNeighborNames());
@@ -55,6 +58,7 @@ public class Main {
             } else if (words[0].equals("look") || words.equals("Look")) {
                 System.out.println("The neighboring rooms are: " + currentRoom.getNeighborNames());
                 System.out.println("The items in this room are: " + currentRoom.displayItems());
+                System.out.println("The animals in this room are: " + currentRoom.displayAnimals());
 
             } else if (words[0].equals("add") || words.equals("add")) {
                 System.out.println("Type the name of the room");

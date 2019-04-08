@@ -16,6 +16,10 @@ public class Chicken extends Creature{
 
     @Override
     public void move() {
+
         super.moveToRandomRoom();
+
+//        System.out.println("moved the Chicken");
+
     }
 }

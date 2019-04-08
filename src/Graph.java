@@ -52,14 +52,14 @@ public class Graph {
         private HashMap<String, Node> neighbors;
         private String description;
         private ArrayList<Item> items;
-        private ArrayList<Chicken> chickens;
+        private ArrayList<Creature> creatures;
 
         public Node(String name) {
             this.name = name;
             neighbors = new HashMap<>();
             description = "This room has no description";
             items = new ArrayList<>();
-            chickens = new ArrayList<>();
+            creatures = new ArrayList<>();
         }
 
         public Node(String name, String description) {
@@ -67,7 +67,7 @@ public class Graph {
             neighbors = new HashMap<>();
             this.description = description;
             items = new ArrayList<>();
-            chickens = new ArrayList<>();
+            creatures = new ArrayList<>();
         }
 
         public String getName() {
@@ -157,6 +157,41 @@ public class Graph {
 
         public void destroyItem(String name) {
             items.remove(name);
+        }
+
+        public void addCreature(Creature c){
+            creatures.add(c);
+        }
+        public Creature removeCreature(Creature c){
+            for (Creature creature : creatures) {
+                 if(creature.equals(c)){
+                     creatures.remove(c);
+                     return creature;
+                 }
+                
+            }
+            return null;
+        }
+        
+        public Creature removeCreature(String name){
+            //as long as animals dont have the same name
+            for (Creature c : creatures) {
+                 if(c.getName().equals(name)){
+                     creatures.remove(c);
+                     return c;
+                }
+                
+            }
+            return null;
+        }
+
+        public String displayAnimals() {
+            String animals = "";
+            for (Creature c : creatures) {
+                 animals += c.getName() +",";
+
+            }
+            return animals;
         }
     }
 }
