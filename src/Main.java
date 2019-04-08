@@ -4,13 +4,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Graph g = new Graph();
-        g.addNode("hall", "This is a hall. It moves you from one room to the next.");
-        g.addNode("closet", "This is a closet. This is where you store things.");
-        g.addNode("dungeon", "This is a dungeon. You do not want to be in a dungeon.");
+        Graph g = createGraph();
 
-        g.addDirectedEdge("hall", "dungeon");
-        g.addUndirectedEdge("hall", "closet");
 
         ArrayList<Creature> allCreatures = new ArrayList<>();
 
@@ -111,6 +106,17 @@ public class Main {
 
         } while (true);
 
+    }
+
+    private static Graph createGraph() {
+        Graph graph = new Graph();
+        graph.addNode("hall", "This is a hall. It moves you from one room to the next.");
+        graph.addNode("closet", "This is a closet. This is where you store things.");
+        graph.addNode("dungeon", "This is a dungeon. You do not want to be in a dungeon.");
+        graph.addDirectedEdge("hall", "dungeon");
+        graph.addUndirectedEdge("hall", "closet");
+
+        return graph;
     }
 
     private static void moveAllCreatures(ArrayList<Creature> allCreatures) {

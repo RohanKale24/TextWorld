@@ -13,12 +13,15 @@ public abstract class Creature {
         if(rooms.size()>0) {
             int randomIndex = (int) (Math.random() * rooms.size());
             Graph.Node newRoom = rooms.get(randomIndex);
-            currentRoom.removeCreature(this);
-            currentRoom = newRoom;
-            currentRoom.addCreature(this);
+            moveCreatureBetweenRooms(newRoom);
         }
 
 
+    }
+    public void moveCreatureBetweenRooms(Graph.Node newRoom){
+        currentRoom.removeCreature(this);
+        currentRoom = newRoom;
+        currentRoom.addCreature(this);
     }
 
     public String getName() {
