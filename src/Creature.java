@@ -10,12 +10,14 @@ public abstract class Creature {
 
     public void moveToRandomRoom(){
         ArrayList<Graph.Node> rooms = new ArrayList<>(currentRoom.getNeighbors().values());
-        int randomIndex = (int)(Math.random()*rooms.size());
-        System.out.println("index is:"+randomIndex);
-        Graph.Node newRoom = rooms.get(randomIndex);
-        currentRoom.removeCreature(this);
-        currentRoom = newRoom;
-        currentRoom.addCreature(this);
+        if(rooms.size()>0) {
+            int randomIndex = (int) (Math.random() * rooms.size());
+            Graph.Node newRoom = rooms.get(randomIndex);
+            currentRoom.removeCreature(this);
+            currentRoom = newRoom;
+            currentRoom.addCreature(this);
+        }
+
 
     }
 
