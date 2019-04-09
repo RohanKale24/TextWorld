@@ -8,17 +8,16 @@ public abstract class Creature {
 
     public abstract void move();
 
-    public void moveToRandomRoom(){
+    public void moveToRandomRoom() {
         ArrayList<Graph.Node> rooms = new ArrayList<>(currentRoom.getNeighbors().values());
-        if(rooms.size()>0) {
+        if (rooms.size() > 0) {
             int randomIndex = (int) (Math.random() * rooms.size());
             Graph.Node newRoom = rooms.get(randomIndex);
             moveCreatureBetweenRooms(newRoom);
         }
-
-
     }
-    public void moveCreatureBetweenRooms(Graph.Node newRoom){
+
+    public void moveCreatureBetweenRooms(Graph.Node newRoom) {
         currentRoom.removeCreature(this);
         currentRoom = newRoom;
         currentRoom.addCreature(this);

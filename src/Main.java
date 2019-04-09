@@ -5,35 +5,21 @@ public class Main {
     public static void main(String[] args) {
 
         Graph g = createGraph();
-
-
         ArrayList<Creature> allCreatures = new ArrayList<>();
+        ArrayList<Item> allItems = new ArrayList<>();
+        createCreatures(g, allCreatures);
+        createItems(g,allItems);
 
         Graph.Node currentRoom = g.getNode("hall");
         String response = "";
         Scanner in = new Scanner(System.in);
 
-        Player p = new Player(currentRoom);
-        System.out.println("Type your name");
-        String playerName = in.nextLine();
-        p.setName(playerName);
-        System.out.println("Type a description if you want, if you don't just hit enter");
-        String playerDesciption = in.nextLine();
-        if (playerDesciption.length() > 0) {
-            p.setDescription(playerDesciption);
-        }
-
+        Player p = createPlayer(currentRoom);
 
         System.out.println("Your commands are: go, look, add room,take, drop, help, or quit");
 
 
-        currentRoom.addItem("yeet", "the most powerful yeet to yeet the yeet");
-        Chicken c = new Chicken("Lord Farquad", currentRoom);
-        currentRoom.addCreature(c);
-        Chicken d = new Chicken("Chicken Little", currentRoom);
-        currentRoom.addCreature(d);
-        allCreatures.add(c);
-        allCreatures.add(d);
+
 
 
         do {
@@ -44,7 +30,7 @@ public class Main {
             String[] words = response.split(" ");
             if (words[0].equals("go") || words[0].equals("Go")) {
                 String nodeName = getValidNodeName(words, g);
-                if (nodeName != null && !nodeName.equals(currentRoom.getName())&& currentRoom.getNeighborNames().contains(nodeName)) {
+                if (nodeName != null && !nodeName.equals(currentRoom.getName()) && currentRoom.getNeighborNames().contains(nodeName)) {
                     currentRoom = g.getNode(nodeName);
                     p.moveToRoom(nodeName);
                     moveAllCreatures(allCreatures);
@@ -108,6 +94,55 @@ public class Main {
 
     }
 
+    private static void createItems(Graph g, ArrayList<Item> allItems) {
+        Graph.Node randRoom = getRandomNode(g);
+        Item yeet = new Item("yeet", "the most powerful yeet to yeet the yeet");
+        allItems.add(yeet);
+        randRoom.addItem(yeet);
+
+        randRoom = getRandomNode(g);
+        Item waterBottle = new Item("water bottle", "It is a normal water bottle with refreshing water");
+        allItems.add(waterBottle);
+        randRoom.addItem(waterBottle);
+    }
+
+    private static Player createPlayer(Graph.Node currentRoom) {
+        Scanner in = new Scanner(System.in);
+        Player p =new Player(currentRoom);
+        System.out.println("Type your name");
+        String playerName = in.nextLine();
+        p.setName(playerName);
+        System.out.println("Type a description if you want, if you don't just hit enter");
+        String playerDesciption = in.nextLine();
+        if (playerDesciption.length() > 0) {
+            p.setDescription(playerDesciption);
+        }
+        return p;
+
+    }
+
+    private static void createCreatures(Graph g, ArrayList<Creature> allCreatures) {
+        Graph.Node randRoom = getRandomNode(g);
+        Chicken c = new Chicken("Lord Farquad", randRoom);
+        randRoom.addCreature(c);
+        allCreatures.add(c);
+
+        randRoom = getRandomNode(g);
+        Chicken d = new Chicken("Chicken Little", randRoom);
+        randRoom.addCreature(d);
+        allCreatures.add(d);
+
+    }
+
+    private static Graph.Node getRandomNode(Graph g) {
+        ArrayList<Graph.Node> Nodes = new ArrayList<>(g.getNodes().values());
+
+        int randomIndex = (int) (Math.random() * Nodes.size());
+        Graph.Node newRoom = Nodes.get(randomIndex);
+
+        return newRoom;
+    }
+
     private static Graph createGraph() {
         Graph graph = new Graph();
         graph.addNode("hall", "This is a hall. It moves you from one room to the next.");
@@ -120,7 +155,7 @@ public class Main {
     }
 
     private static void moveAllCreatures(ArrayList<Creature> allCreatures) {
-        for(Creature c : allCreatures){
+        for (Creature c : allCreatures) {
             c.move();
         }
     }

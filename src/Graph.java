@@ -45,6 +45,9 @@ public class Graph {
             node2.addNeighbor(node1);
         }
     }
+    public HashMap getNodes(){
+        return nodes;
+    }
 
 
     public class Node {
