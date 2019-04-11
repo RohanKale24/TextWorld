@@ -8,6 +8,14 @@ public class masterCommand {
         initCommands();
     }
 
+    public String parseCommand(String input){
+        String [] words = input.split(" ");
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            Command c = commands.get(word);
+        }
+    }
+
     private void initCommands() {
         commands.put("go", new goCommand());
         commands.put("look",new addCommand());
