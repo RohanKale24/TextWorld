@@ -28,6 +28,7 @@ public class Main {
 
             response = in.nextLine();
             String[] words = response.split(" ");
+
             if (words[0].equals("go") || words[0].equals("Go")) {
                 String nodeName = getValidNodeName(words, g);
                 if (nodeName != null && !nodeName.equals(currentRoom.getName()) && currentRoom.getNeighborNames().contains(nodeName)) {

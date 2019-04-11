@@ -1,7 +1,4 @@
-public abstract class Command {
-        String userInput;
-    public Command(String userInput){
-        this.userInput = userInput;
-    }
-
+public interface Command {
+    public void init();
+    public boolean execute();
 }
