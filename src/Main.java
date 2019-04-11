@@ -1,3 +1,5 @@
+import jdk.nashorn.internal.runtime.regexp.joni.CodeRangeBuffer;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,14 +9,16 @@ public class Main {
         Graph g = createGraph();
          ArrayList<Creature> allCreatures = new ArrayList<>();
         ArrayList<Item> allItems = new ArrayList<>();
-        createCreatures(g, allCreatures);
+        Graph.Node currentRoom = g.getNode("hall");
+        Player p = createPlayer(currentRoom);
+        createCreatures(g, allCreatures,p);
         createItems(g,allItems);
 
-        Graph.Node currentRoom = g.getNode("hall");
+
         String response = "";
         Scanner in = new Scanner(System.in);
 
-        Player p = createPlayer(currentRoom);
+
 
         System.out.println("Your commands are: go, look, add room,take, drop, help, or quit");
 
@@ -30,6 +34,7 @@ public class Main {
                     currentRoom = g.getNode(nodeName);
                     p.moveToRoom(nodeName);
                     moveAllCreatures(allCreatures);
+                    updatePlayerLocation(allCreatures,p);
                 } else {
                     System.out.println("Please type a valid room name");
                     System.out.println("The neighboring rooms are: " + currentRoom.getNeighborNames());
@@ -90,6 +95,19 @@ public class Main {
 
     }
 
+    private static void updatePlayerLocation(ArrayList<Creature> allCreatures, Player player) {
+        for (int i = 0; i < allCreatures.size(); i++) {
+            Creature c = allCreatures.get(i);
+            if(c instanceof Wumpus){
+                ((Wumpus) c).setPlayerRoom(player);
+            }
+            else if(c instanceof Popstar){
+                ((Popstar) c).setPlayerRoom(player);
+            }
+        }
+
+    }
+
     private static void createItems(Graph g, ArrayList<Item> allItems) {
         Graph.Node randRoom = getRandomNode(g);
         Item yeet = new Item("yeet", "the most powerful yeet to yeet the yeet");
@@ -117,7 +135,7 @@ public class Main {
 
     }
 
-    private static void createCreatures(Graph g, ArrayList<Creature> allCreatures) {
+    private static void createCreatures(Graph g, ArrayList<Creature> allCreatures,Player player) {
         Graph.Node randRoom = getRandomNode(g);
         Chicken c = new Chicken("Lord Farquad", randRoom);
         randRoom.addCreature(c);
@@ -128,6 +146,17 @@ public class Main {
         randRoom.addCreature(d);
         allCreatures.add(d);
 
+        randRoom = getRandomNode(g);
+        Popstar popstar = new Popstar("Fire Drake Noetic", randRoom);
+        randRoom.addCreature(popstar);
+        allCreatures.add(d);
+
+        randRoom = getRandomNode(g);
+        Wumpus w = new Wumpus("Nabbit",randRoom);
+        randRoom.addCreature(w);
+        allCreatures.add(w);
+
+        updatePlayerLocation(allCreatures,player);
     }
 
     private static Graph.Node getRandomNode(Graph g) {

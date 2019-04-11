@@ -76,10 +76,10 @@ public class Wumpus extends Creature{
         return false;
     }
 
-    public void getPlayerRoom(Player p){
+    public void setPlayerRoom(Player p){
         this.playerRoom = p.getCurrentNode();
     }
-    public void getPlayerName(Graph.Node playerRoom){
+    public void setPlayerRoom(Graph.Node playerRoom){
         this.playerRoom = playerRoom;
     }
 }
