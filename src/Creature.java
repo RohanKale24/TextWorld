@@ -15,6 +15,7 @@ public abstract class Creature {
             Graph.Node newRoom = rooms.get(randomIndex);
             moveCreatureBetweenRooms(newRoom);
         }
+
     }
 
     public void moveCreatureBetweenRooms(Graph.Node newRoom) {

@@ -18,10 +18,6 @@ public class Main {
 
         System.out.println("Your commands are: go, look, add room,take, drop, help, or quit");
 
-
-
-
-
         do {
             System.out.println("You are currently in the " + currentRoom.getName());
             System.out.println("What do you want to do?");
@@ -148,8 +144,13 @@ public class Main {
         graph.addNode("hall", "This is a hall. It moves you from one room to the next.");
         graph.addNode("closet", "This is a closet. This is where you store things.");
         graph.addNode("dungeon", "This is a dungeon. You do not want to be in a dungeon.");
+        graph.addNode("fake","This is not a real room. You have been tricked");
+        graph.addNode("imaginary","You are imagining rooms now");
+
         graph.addDirectedEdge("hall", "dungeon");
         graph.addUndirectedEdge("hall", "closet");
+        graph.addUndirectedEdge("closet","fake");
+        graph.addUndirectedEdge("fake","imaginary");
 
         return graph;
     }
@@ -160,7 +161,7 @@ public class Main {
         }
     }
 
-    private static String getValidNodeName(String[] words, Graph g) {
+    private static String getValidNodeName(String[] words, Graph g) {//need to add code for room names for multiple word names
         for (int i = 0; i < words.length; i++) {
             if (g.getNode(words[i]) != null) {
                 return words[i];

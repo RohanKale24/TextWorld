@@ -1,25 +1,15 @@
-public class Wumpus extends Creature{
+public class Popstar extends Creature{
     Graph.Node playerRoom = null;
-    public Wumpus(String name, Graph.Node currentRoom){
+
+    public Popstar(String name, Graph.Node currentRoom){
         super();
         this.currentRoom = currentRoom;
         this.name = name;
     }
-
+    @Override
     public void move() {
-        if(isWithin2StepsOfPlayer()){
 
-        }
-        else{
-            super.moveToRandomRoom();
-        }
     }
-
-    private boolean isWithin2StepsOfPlayer() {
-//        if ()
-        return true;
-    }
-
     public void getPlayerRoom(Player p){
         this.playerRoom = p.getCurrentNode();
     }
