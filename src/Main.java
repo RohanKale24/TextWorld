@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         Graph g = createGraph();
-        ArrayList<Creature> allCreatures = new ArrayList<>();
+         ArrayList<Creature> allCreatures = new ArrayList<>();
         ArrayList<Item> allItems = new ArrayList<>();
         createCreatures(g, allCreatures);
         createItems(g,allItems);
