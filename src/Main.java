@@ -180,7 +180,8 @@ public class Main {
         graph.addDirectedEdge("hall", "dungeon");
         graph.addUndirectedEdge("hall", "closet");
         graph.addUndirectedEdge("closet","fake");
-        graph.addUndirectedEdge("fake","imaginary");
+        graph.addDirectedEdge("fake","imaginary");
+        graph.addDirectedEdge("dungeon","imaginary");
 
         return graph;
     }
