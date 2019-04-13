@@ -4,11 +4,13 @@ public class masterCommand {
 
     private final String userInput;
     private final Player p;
+    Graph g;
 
     HashMap<String,Command> commands;
-    public masterCommand(String userInput,Player p){
+    public masterCommand(String userInput,Player p,Graph g){
         this.userInput = userInput;
         this.p = p;
+        this.g = g;
         commands = new HashMap<>();
         initCommands();
     }
@@ -26,8 +28,8 @@ public class masterCommand {
 
     private void initCommands() {
         commands.put("go", new goCommand());
-        commands.put("look",new lookCommand());
-        commands.put("add",new addCommand());
+        commands.put("look",new lookCommand(p));
+        commands.put("add",new addCommand(g));
         commands.put("quit",new quitCommand());
         commands.put("help", new helpCommand());
         commands.put("take",new takeCommand(userInput,p));

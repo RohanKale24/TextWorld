@@ -40,10 +40,10 @@ public class Main {
                     System.out.println("The neighboring rooms are: " + currentRoom.getNeighborNames());
                 }
 
-            } else if (words[0].equals("look") || words.equals("Look")) {
-                System.out.println("The neighboring rooms are: " + currentRoom.getNeighborNames());
-                System.out.println("The items in this room are: " + currentRoom.displayItems());
-                System.out.println("The animals in this room are: " + currentRoom.displayAnimals());
+//            } else if (words[0].equals("look") || words.equals("Look")) {
+//                System.out.println("The neighboring rooms are: " + currentRoom.getNeighborNames());
+//                System.out.println("The items in this room are: " + currentRoom.displayItems());
+//                System.out.println("The animals in this room are: " + currentRoom.displayAnimals());
 
             } else if (words[0].equals("add") || words.equals("add")) {
                 System.out.println("Type the name of the room");
