@@ -26,7 +26,7 @@ public class masterCommand {
 
     private void initCommands() {
         commands.put("go", new goCommand());
-        commands.put("look",new addCommand());
+        commands.put("look",new lookCommand());
         commands.put("add",new addCommand());
         commands.put("quit",new quitCommand());
         commands.put("help", new helpCommand());
