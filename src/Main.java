@@ -67,14 +67,14 @@ public class Main {
                 System.out.println("to take an item simply type drop and a valid item name that is in your inventory and it will be added to the room");
 
                 System.out.println("to quit simply type quit");
-            } else if (words[0].equals("take") || words.equals("Take")) {
-                String itemName = getValidItemName(words, currentRoom);
-                if (itemName != null) {
-                    p.addItem(currentRoom.removeItem(itemName));
-                } else {
-                    System.out.println("There is no valid item name");
-                    System.out.println("The items in this room are: " + currentRoom.displayItems());
-                }
+//            } else if (words[0].equals("take") || words.equals("Take")) {
+//                String itemName = getValidItemName(words, currentRoom);
+//                if (itemName != null) {
+//                    p.addItem(currentRoom.removeItem(itemName));
+//                } else {
+//                        System.out.println("There is no valid item name");
+//                        System.out.println("The items in this room are: " + currentRoom.displayItems());
+//                }
 
 
             } else if (words[0].equals("drop") || words.equals("Drop")) {

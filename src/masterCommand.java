@@ -2,8 +2,13 @@ import java.util.HashMap;
 
 public class masterCommand {
 
+    private final String userInput;
+    private final Player p;
+
     HashMap<String,Command> commands;
-    public masterCommand(){
+    public masterCommand(String userInput,Player p){
+        this.userInput = userInput;
+        this.p = p;
         commands = new HashMap<>();
         initCommands();
     }
@@ -12,8 +17,11 @@ public class masterCommand {
         String [] words = input.split(" ");
         for (int i = 0; i < words.length; i++) {
             String word = words[i];
-            Command c = commands.get(word);
+            if(commands.keySet().contains(word)){
+                return word;
+            }
         }
+        return "";
     }
 
     private void initCommands() {
@@ -22,8 +30,8 @@ public class masterCommand {
         commands.put("add",new addCommand());
         commands.put("quit",new quitCommand());
         commands.put("help", new helpCommand());
-        commands.put("take",new takeCommand(/*Graph.Node*/));
-        commands.put("drop", new dropCommand());
+        commands.put("take",new takeCommand(userInput,p));
+        commands.put("drop", new dropCommand(userInput,p));
 
     }
 }
