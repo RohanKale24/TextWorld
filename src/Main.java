@@ -45,16 +45,16 @@ public class Main {
 //                System.out.println("The items in this room are: " + currentRoom.displayItems());
 //                System.out.println("The animals in this room are: " + currentRoom.displayAnimals());
 
-            } else if (words[0].equals("add") || words.equals("add")) {
-                System.out.println("Type the name of the room");
-                String name = in.nextLine();
-                System.out.println("Type a description if you want, if you don't just hit enter");
-                String description = in.nextLine();
-                if (description.length() > 0) {
-                    g.addNode(name, description);
-                } else {
-                    g.addNode(name);
-                }
+//            } else if (words[0].equals("add") || words.equals("add")) {
+//                System.out.println("Type the name of the room");
+//                String name = in.nextLine();
+//                System.out.println("Type a description if you want, if you don't just hit enter");
+//                String description = in.nextLine();
+//                if (description.length() > 0) {
+//                    g.addNode(name, description);
+//                } else {
+//                    g.addNode(name);
+//                }
 //            } else if (words[0].equals("quit") || words.equals("Quit")) {
 //                break;
 //            } else if (words[0].equals("help") || words.equals("Help")) {
